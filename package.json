@@ -1,0 +1,30 @@
+{
+  "name": "config-watch",
+  "version": "0.0.1",
+  "description": "Simple configuration manager for node",
+  "main": "index.js",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/brrd/node-config-watch"
+  },
+  "scripts": {
+    "test": "mocha ./tests.js"
+  },
+  "keywords": [
+    "hierarchical",
+    "configuration",
+    "json",
+    "nconf",
+    "watch"
+  ],
+  "author": "brrd",
+  "license": "MIT",
+  "dependencies": {
+    "chokidar": "^1.4.3",
+    "nconf": "^0.8.4"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  }
+}
