@@ -74,7 +74,7 @@ class Config extends EventEmitter {
             // Timeout to make sure writing is totally done
             setTimeout(() => {
                 if (!this.isSaving) {
-                    this.load((err) => this.emit("change", err));
+                    this.load((err) => this.emit("change", err, this));
                 }
             }, 100);
         });

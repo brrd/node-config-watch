@@ -45,7 +45,7 @@ config.set("colors:snow", "white");
 Watch for changes in config file:
 
 ```javascript
-config.on("change", (err) => {
+config.on("change", (err, config) => {
     if (err) console.error(err);
     else console.log("Config changed. The new config is:\n", config.get());
 });
