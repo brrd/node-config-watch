@@ -10,8 +10,8 @@ const defaults = {
     "john": "doe"
 };
 const configContents = {
-  "foo": "baz",
-  "hello": "world"
+    "foo": "baz",
+    "hello": "world"
 };
 
 beforeEach(function(done) {
@@ -98,7 +98,14 @@ describe("save and watch:", function() {
     });
 
     it("should watch for changes in config.json", function (done) {
-        config.on("change", done);
+        config.once("change", done);
         fs.writeFile(configPath, '{ "goodbye": "world" }');
+    });
+
+    it("should find that foo has changed", function (done) {
+        config.once("change", (err, config) => {
+            if (config.hasChanged("foo")) done();
+        });
+        fs.writeFile(configPath, '{ "foo": "changed" }');
     });
 });
