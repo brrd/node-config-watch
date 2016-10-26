@@ -87,6 +87,7 @@ class Config extends EventEmitter {
     }
 
     hasChanged(key) {
+        if (!this.prevConfig || !this.config) return;
         let prevValue = this.prevConfig.get(key);
         let value = this.config.get(key);
         return !isEqual(prevValue, value);
