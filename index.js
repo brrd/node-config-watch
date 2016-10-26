@@ -92,6 +92,16 @@ class Config extends EventEmitter {
         let value = this.config.get(key);
         return !isEqual(prevValue, value);
     }
+
+    cancelChange(key) {
+        if (!this.prevConfig || !this.config) return;
+        if (key) {
+            this.config.set(key, this.prevConfig.get(key));
+        } else {
+            this.config = this.prevConfig;
+            this.prevConfig = null;
+        }
+    }
 }
 
 module.exports = Config;

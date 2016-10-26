@@ -62,6 +62,21 @@ config.on("change", (err, config) => {
 });
 ```
 
+Cancel the last change and get back to the previous config:
+
+```javascript
+config.set("foo", "bar");
+
+config.on("change", (err, config) => {
+    if (err) throw err;
+    if (config.get("foo") !== "bar") {
+        console.log("This value is not allowed");
+        config.cancelChange("foo");
+        console.log(config.get("foo")); // Outputs "bar"
+    }
+});
+```
+
 ## Options
 
 ### `defaults`

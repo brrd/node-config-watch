@@ -108,4 +108,20 @@ describe("save and watch:", function() {
         });
         fs.writeFile(configPath, '{ "foo": "changed" }');
     });
+
+    it("should cancel change on foo", function (done) {
+        config.once("change", (err, config) => {
+            config.cancelChange("foo");
+            if (!config.hasChanged("foo")) done();
+        });
+        fs.writeFile(configPath, '{ "foo": "changed" }');
+    });
+
+    it("should cancel change on the whole config", function (done) {
+        config.once("change", (err, config) => {
+            config.cancelChange();
+            if (!config.hasChanged("foo")) done();
+        });
+        fs.writeFile(configPath, '{ "foo": "changed" }');
+    });
 });
