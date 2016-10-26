@@ -2,6 +2,7 @@
 
 const EventEmitter = require("events");
 const fs = require("fs");
+const isEqual = require("lodash.isequal");
 const nconf  = require("nconf");
 const watch = require("chokidar").watch;
 
@@ -46,6 +47,7 @@ class Config extends EventEmitter {
             if (typeof callback === "function") callback(err);
             return;
         }
+        this.prevConfig = this.config;
         this.config = newConfig;
         if (typeof callback === "function") callback();
     }
@@ -82,6 +84,12 @@ class Config extends EventEmitter {
 
     unwatch() {
         if (this.watcher) this.watcher.close();
+    }
+
+    hasChanged(key) {
+        let prevValue = this.prevConfig.get(key);
+        let value = this.config.get(key);
+        return !isEqual(prevValue, value);
     }
 }
 

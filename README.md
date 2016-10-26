@@ -46,8 +46,19 @@ Watch for changes in config file:
 
 ```javascript
 config.on("change", (err, config) => {
-    if (err) console.error(err);
-    else console.log("Config changed. The new config is:\n", config.get());
+    if (err) throw err;
+    console.log("Config changed. The new config is:\n", config.get());
+});
+```
+
+Check if a specific value has changed:
+
+```javascript
+config.on("change", (err, config) => {
+    if (err) throw err;
+    if (config.hasChanged("foo") {
+        console.log("foo new value is " + config.get(foo));
+    });
 });
 ```
 
