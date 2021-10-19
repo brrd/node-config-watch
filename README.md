@@ -4,6 +4,10 @@
 
 Read and save a config from a JSON file and trigger an event when the file changes.
 
+## :warning: This module is deprecated
+
+For Electron, use this alternative instead: <https://github.com/sindresorhus/electron-store>
+
 ## Installation
 
 `$ npm install --save config-watch`
